@@ -1,8 +1,10 @@
 from flask import Flask
 
-from src.models import db
+from src.models import db, User
 from src.config import Config
 from src.commands import init_db, populate_db
+from src.extensions import migrate, login_manager
+from src.admin import admin
 
 
 COMMANDS = [
@@ -29,6 +31,19 @@ def register_extensions(app):
 
     # Flask-SQLAlchemy
     db.init_app(app)
+
+    # Flask-Migrate
+    migrate.init_app(app, db)
+
+    # Flask-Login
+    login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get_or_404(user_id)
+
+    # Flask-Admin
+    admin.init_app(app)
 
 
 def register_commands(app):

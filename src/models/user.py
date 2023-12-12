@@ -1,13 +1,18 @@
+from werkzeug.security import generate_password_hash
+from flask_login import UserMixin
+
 from src.extensions import db
 from src.models import BaseModel
-from werkzeug.security import generate_password_hash
 
 
-class User(db.Model, BaseModel):
+class User(db.Model, BaseModel, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
     _password = db.Column(db.String)
+
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    role = db.relationship('Role', uselist=False)
 
     @property
     def password(self):
@@ -16,3 +21,16 @@ class User(db.Model, BaseModel):
     @password.setter
     def password(self, value):
         self._password = generate_password_hash(value)
+
+    def __repr__(self):
+        return f"User: {self.username}"
+
+
+class Role(db.Model, BaseModel):
+    __tablename__ = 'roles'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True)
+
+    def __repr__(self):
+        return f"Role: {self.name}"
