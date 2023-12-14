@@ -2,6 +2,8 @@ from src.extensions import db
 from src.models import BaseModel
 
 
+# ეს მოდელი ყველაზე ზემოთ იმიტომაა, რომ პრობლემა მქონდა Location-თან
+# როდესაც ვუთითებდი foreign_keys-ს ვერ აღიქვამდა LocationConnection-ს
 class LocationConnection(BaseModel, db.Model):
     __tablename__ = 'location_connections'
 
@@ -28,12 +30,21 @@ class Location(BaseModel, db.Model):
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
 
+    # ლოკაციის ტიპები
     types = db.relationship("Type", secondary="location_types", backref="locations")
 
+    # ლოკაციასთან დაკავშირებული სახელები
     relations = db.relationship("LocationRelation", backref="location")
 
+    # ლოკაციის კავშირები
     connection_with = db.relationship("LocationConnection", back_populates="located_from", foreign_keys=LocationConnection.located_from_id)
     connection_from = db.relationship("LocationConnection", back_populates="located_with", foreign_keys=LocationConnection.located_with_id)
+
+    # ლოკაციის ბიბლიოგრააფიები
+    bibliographies = db.relationship("Bibliography", secondary="location_bibliographies", backref="locations")
+
+    # ლოკაციის ბმულები
+    links = db.relationship("Link", secondary="location_links", backref="locations")
 
     def __repr__(self):
         return f'{self.name} (Location)'

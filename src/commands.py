@@ -2,7 +2,8 @@ from flask.cli import with_appcontext
 import click
 
 from src.extensions import db
-from src.models import User, Location, Type, LocationType, LocationRelation, ConnectionType, LocationConnection
+from src.models import User, Location, Type, LocationType, LocationRelation, ConnectionType, LocationConnection, \
+    Bibliography, LocationBibliography, Link, LocationLink
 from src.models.user import Role
 
 
@@ -89,9 +90,45 @@ def populate_db():
     connection_type2.create(commit=False)
     connection_type3.create(commit=False)
 
-    LocationConnection(located_from_id=location2.id, located_with_id=location1.id, connection_type_id=connection_type1.id).create(commit=False)
+    LocationConnection(located_from_id=location2.id, located_with_id=location1.id,
+                       connection_type_id=connection_type1.id).create(commit=False)
 
     click.echo("Location connections added to database.")
+
+    click.echo("Adding bibliographies to database...")
+
+    bibliography1 = Bibliography(abbreviation="ABC")
+    bibliography2 = Bibliography(abbreviation="DEF")
+    bibliography3 = Bibliography(abbreviation="GHI")
+
+    bibliography1.create(commit=False)
+    bibliography2.create(commit=False)
+    bibliography3.create(commit=False)
+
+    LocationBibliography(location_id=location1.id, bibliography_id=bibliography3.id).create(commit=False)
+    LocationBibliography(location_id=location1.id, bibliography_id=bibliography1.id).create(commit=False)
+
+
+    click.echo("Bibliographies added to database.")
+
+    click.echo("Adding links to database")
+
+    link1 = Link(title="გონიო",
+                 link="https://ka.wikipedia.org/wiki/%E1%83%92%E1%83%9D%E1%83%9C%E1%83%98%E1%83%9D")
+    link2 = Link(title="გონიოს ციხე",
+                 link="https://ka.wikipedia.org/wiki/%E1%83%92%E1%83%9D%E1%83%9C%E1%83%98%E1%83%9D%E1%83%A1_%E1%83%AA%E1%83%98%E1%83%AE%E1%83%94")
+    link3 = Link(title="ქართვლის დედა",
+                 link="https://ka.wikipedia.org/wiki/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%97%E1%83%95%E1%83%9A%E1%83%98%E1%83%A1_%E1%83%93%E1%83%94%E1%83%93%E1%83%90")
+
+    link1.create(commit=False)
+    link2.create(commit=False)
+    link3.create(commit=False)
+
+    LocationLink(location_id=location1.id, link_id=link1.id).create(commit=False)
+    LocationLink(location_id=location2.id, link_id=link2.id).create(commit=False)
+    LocationLink(location_id=location3.id, link_id=link3.id).create(commit=False)
+
+    click.echo("Links added to database.")
 
     click.echo("Locations added to database.")
 
