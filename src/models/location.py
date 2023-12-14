@@ -47,7 +47,7 @@ class Location(BaseModel, db.Model):
     links = db.relationship("Link", secondary="location_links", backref="locations")
 
     def __repr__(self):
-        return f'{self.name} (Location)'
+        return f'{self.name}'
 
 
 class Type(BaseModel, db.Model):
@@ -57,7 +57,7 @@ class Type(BaseModel, db.Model):
     name = db.Column(db.String, nullable=False, unique=True)
 
     def __repr__(self):
-        return f'{self.name} (Type)'
+        return f'{self.name}'
 
 
 class LocationType(BaseModel, db.Model):
@@ -77,6 +77,9 @@ class LocationRelation(BaseModel, db.Model):
     period = db.Column(db.String)
     text = db.Column(db.String)
 
+    def __repr__(self):
+        return f'{self.name}'
+
 
 class ConnectionType(BaseModel, db.Model):
     __tablename__ = 'connection_types'
@@ -85,4 +88,4 @@ class ConnectionType(BaseModel, db.Model):
     name = db.Column(db.String, nullable=False, unique=True)
 
     def __repr__(self):
-        return f'{self.name} (Connection)'
+        return f'{self.name}'
