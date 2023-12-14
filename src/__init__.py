@@ -1,6 +1,6 @@
 from flask import Flask
 
-from src.models import db, User
+from src.models import db, User, LocationConnection
 from src.config import Config
 from src.commands import init_db, populate_db
 from src.extensions import migrate, login_manager

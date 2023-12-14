@@ -2,7 +2,7 @@ from flask.cli import with_appcontext
 import click
 
 from src.extensions import db
-from src.models import User
+from src.models import User, Location, Type, LocationType, LocationRelation, ConnectionType, LocationConnection
 from src.models.user import Role
 
 
@@ -24,8 +24,8 @@ def populate_db():
     role1 = Role(name="user")
     role2 = Role(name="admin")
 
-    db.session.add(role1)
-    db.session.add(role2)
+    role1.create(commit=False)
+    role2.create(commit=False)
 
     db.session.commit()
 
@@ -35,10 +35,65 @@ def populate_db():
 
     user1 = User(username="Username1234", password="Password1234", role_id=2)
     user2 = User(username="Dummy", password="Data", role_id=1)
-    db.session.add(user1)
-    db.session.add(user2)
+
+    user1.create(commit=False)
+    user2.create(commit=False)
 
     click.echo("Users added to database.")
+
+    click.echo("Adding locations to database...")
+
+    location1 = Location(name="Gonio")
+    location2 = Location(name="Gonio Fortress")
+    location3 = Location(name="Qartvlis Deda")
+
+    location1.create(commit=False)
+    location2.create(commit=False)
+    location3.create(commit=False)
+
+    click.echo("Adding location types to database...")
+
+    type1 = Type(name="City")
+    type2 = Type(name="Statue")
+    type3 = Type(name="Fortress")
+
+    type1.create(commit=False)
+    type2.create(commit=False)
+    type3.create(commit=False)
+
+    LocationType(location_id=location1.id, type_id=type1.id).create(commit=False)
+    LocationType(location_id=location2.id, type_id=type3.id).create(commit=False)
+    LocationType(location_id=location3.id, type_id=type2.id).create(commit=False)
+
+    click.echo("Location types added to database.")
+
+    click.echo("Adding location relations to database...")
+
+    LocationRelation(location_id=location1.id, name="Gonio").create(commit=False)
+    LocationRelation(location_id=location1.id, name="Afsarut").create(commit=True)
+
+    LocationRelation(location_id=location2.id, name="Gonio Fortress").create(commit=False)
+    LocationRelation(location_id=location2.id, name="Afsarus").create(commit=True)
+
+    LocationRelation(location_id=location3.id, name="Qartvlis Deda").create(commit=False)
+
+    click.echo("Location relations added to database.")
+
+    click.echo("Adding location connections to database...")
+
+    connection_type1 = ConnectionType(name="located at")
+    connection_type2 = ConnectionType(name="located near")
+    connection_type3 = ConnectionType(name="connection")
+
+    connection_type1.create(commit=False)
+    connection_type2.create(commit=False)
+    connection_type3.create(commit=False)
+
+    LocationConnection(located_from_id=location2.id, located_with_id=location1.id, connection_type_id=connection_type1.id).create(commit=False)
+
+    click.echo("Location connections added to database.")
+
+    click.echo("Locations added to database.")
 
     db.session.commit()
 
