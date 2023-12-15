@@ -14,9 +14,10 @@ class LocationConnection(BaseModel, db.Model):
 
     location_from = db.relationship("Location", backref="connections_from", foreign_keys=located_from_id)
     location_with = db.relationship("Location", backref="connections_with", foreign_keys=located_with_id)
+    connection_type = db.relationship("ConnectionType", backref="connection_types", foreign_keys=connection_type_id)
 
     def __repr__(self):
-        return f"{self.location_from} -> {self.connection_type_id} -> {self.location_with}"
+        return f"{self.location_from} -> {self.connection_type} -> {self.location_with}"
 
 
 class Location(BaseModel, db.Model):
