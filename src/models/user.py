@@ -22,6 +22,9 @@ class User(db.Model, BaseModel, UserMixin):
     def password(self, value):
         self._password = generate_password_hash(value)
 
+    def is_admin(self):
+        return self.role.name == "admin"
+
     def __repr__(self):
         return f"User: {self.username}"
 
