@@ -16,7 +16,7 @@ class Bibliography(BaseModel, db.Model):
     comment = db.Column(db.String)
 
     def __repr__(self):
-        return f'{self.title} - {self.author} (bibliography)'
+        return f'{self.abbreviation} - {self.title} - {self.author}'
 
 
 class LocationBibliography(BaseModel, db.Model):

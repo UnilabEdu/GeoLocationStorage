@@ -34,14 +34,13 @@ class Location(BaseModel, db.Model):
     types = db.relationship("Type", secondary="location_types", backref="locations")
 
     # ლოკაციასთან დაკავშირებული სახელები
-    relations = db.relationship("LocationRelation", backref="location")
+    relations = db.relationship("LocationRelation", back_populates="location")
 
     # ლოკაციის ბიბლიოგრააფიები
     bibliographies = db.relationship("Bibliography", secondary="location_bibliographies", backref="locations")
 
     # ლოკაციის ბმულები
-    links = db.relationship("Link", secondary="location_links", backref="locations")
-
+    links = db.relationship("Link", back_populates="location")
 
     def __repr__(self):
         return f'{self.name}'
@@ -73,6 +72,8 @@ class LocationRelation(BaseModel, db.Model):
     name = db.Column(db.String, nullable=False)
     period = db.Column(db.String)
     text = db.Column(db.String)
+
+    location = db.relationship("Location", back_populates="relations")
 
     def __repr__(self):
         return f'{self.name}'

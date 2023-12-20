@@ -3,7 +3,7 @@ import click
 
 from src.extensions import db
 from src.models import User, Location, Type, LocationType, LocationRelation, ConnectionType, LocationConnection, \
-    Bibliography, LocationBibliography, Link, LocationLink
+    Bibliography, LocationBibliography, Link
 from src.models.user import Role
 
 
@@ -114,19 +114,12 @@ def populate_db():
     click.echo("Adding links to database")
 
     link1 = Link(title="გონიო",
-                 link="https://ka.wikipedia.org/wiki/%E1%83%92%E1%83%9D%E1%83%9C%E1%83%98%E1%83%9D")
+                 link="https://ka.wikipedia.org/wiki/%E1%83%92%E1%83%9D%E1%83%9C%E1%83%98%E1%83%9D", location_id=location1.id).create(commit=False)
     link2 = Link(title="გონიოს ციხე",
-                 link="https://ka.wikipedia.org/wiki/%E1%83%92%E1%83%9D%E1%83%9C%E1%83%98%E1%83%9D%E1%83%A1_%E1%83%AA%E1%83%98%E1%83%AE%E1%83%94")
+                 link="https://ka.wikipedia.org/wiki/%E1%83%92%E1%83%9D%E1%83%9C%E1%83%98%E1%83%9D%E1%83%A1_%E1%83%AA%E1%83%98%E1%83%AE%E1%83%94", location_id=location2.id).create(commit=False)
     link3 = Link(title="ქართვლის დედა",
-                 link="https://ka.wikipedia.org/wiki/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%97%E1%83%95%E1%83%9A%E1%83%98%E1%83%A1_%E1%83%93%E1%83%94%E1%83%93%E1%83%90")
+                 link="https://ka.wikipedia.org/wiki/%E1%83%A5%E1%83%90%E1%83%A0%E1%83%97%E1%83%95%E1%83%9A%E1%83%98%E1%83%A1_%E1%83%93%E1%83%94%E1%83%93%E1%83%90", location_id=location3.id).create(commit=False)
 
-    link1.create(commit=False)
-    link2.create(commit=False)
-    link3.create(commit=False)
-
-    LocationLink(location_id=location1.id, link_id=link1.id).create(commit=False)
-    LocationLink(location_id=location2.id, link_id=link2.id).create(commit=False)
-    LocationLink(location_id=location3.id, link_id=link3.id).create(commit=False)
 
     click.echo("Links added to database.")
 
