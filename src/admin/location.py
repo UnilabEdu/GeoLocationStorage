@@ -33,4 +33,4 @@ class LocationView(SecureModelView):
 
     column_extra_row_actions = [LocationViewRowAction("fa fa-eye")]
 
-    inline_models = [LocationRelation, LocationConnection, Link]
+    inline_models = [LocationRelation, LocationConnection, Link,]
