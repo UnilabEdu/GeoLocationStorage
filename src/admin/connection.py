@@ -9,6 +9,8 @@ class ConnectionView(SecureModelView):
 
     form_columns = ["name"]
 
+    form_excluded_columns = ["locations"]
+
     column_labels = {"name": "კავშირის ტიპი"}
 
     column_searchable_list = ["name"]

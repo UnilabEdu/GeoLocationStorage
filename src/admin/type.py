@@ -7,6 +7,8 @@ class TypeView(SecureModelView):
 
     column_list = ["name"]
 
+    form_excluded_columns = ["locations"]
+
     column_labels = {'name': "ადგილის ტიპი"}
 
     column_searchable_list = ["name"]
