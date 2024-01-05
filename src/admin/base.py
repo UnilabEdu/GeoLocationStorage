@@ -2,6 +2,7 @@ from flask import url_for, redirect
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import AdminIndexView
 from flask_login import current_user
+from wtforms.validators import DataRequired
 
 
 # გამოვიყენებ, როდესაც ლოგინსა და რეგისტრაციას დავამატებ

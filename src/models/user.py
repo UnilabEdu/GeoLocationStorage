@@ -25,6 +25,11 @@ class User(db.Model, BaseModel, UserMixin):
     def is_admin(self):
         return self.role.name == "admin"
 
+    def __init__(self, username, password, role_id):
+        self.username = username
+        self._password = password
+        self.role_id = role_id
+
     def __repr__(self):
         return f"User: {self.username}"
 
@@ -34,6 +39,9 @@ class Role(db.Model, BaseModel):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True)
+
+    def __init__(self, name):
+        self.name = name
 
     def __repr__(self):
         return f"Role: {self.name}"
