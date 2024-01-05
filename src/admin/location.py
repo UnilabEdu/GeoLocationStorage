@@ -51,7 +51,7 @@ class LocationView(SecureModelView):
     column_searchable_list = ["name"]
 
     column_labels = {"name": "სახელი", "types": "ტიპი/ტიპები", "period": "დროის პერიოდი", "description": "აღწერა",
-                     "latitude": "გრძედი", "longitude": "განედი"}
+                     "latitude": "გრძედი", "longitude": "განედი", "bibliographies": "ბიბლიოგრაფია", "relations": "დაკავშირებული სახელები", "connections_from": "დაკავშირებული ადგილები", "links": "ბმული/ბმულები"}
 
     column_sortable_list = ["name", ("types", "types.name")]
 
