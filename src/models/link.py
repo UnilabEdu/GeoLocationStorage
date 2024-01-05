@@ -12,5 +12,10 @@ class Link(BaseModel, db.Model):
 
     location = db.relationship("Location", back_populates="links")
 
+    def __init__(self, location_id, title, link):
+        self.location_id = location_id
+        self.title = title
+        self.link = link
+
     def __repr__(self):
         return f"{self.title} - {self.link} (Link)"
