@@ -8,6 +8,9 @@ from src.extensions import migrate, login_manager
 from src.admin import admin
 from src.admin.base import SecureModelView
 from src.admin.location import LocationView
+from src.admin.bibliography import BibliographyView
+from src.admin.type import TypeView
+from src.admin.connection import ConnectionView
 
 
 COMMANDS = [
@@ -49,9 +52,9 @@ def register_extensions(app):
     # Flask-Admin
     admin.init_app(app)
     admin.add_view(LocationView(Location, db.session, name="ადგილები", endpoint="location"))
-    admin.add_view(SecureModelView(Type, db.session, name="ადგილის ტიპები", endpoint="types"))
-    admin.add_view(SecureModelView(ConnectionType, db.session, name="კავშირის ტიპი", endpoint="connection_type"))
-    admin.add_view(SecureModelView(Bibliography, db.session, name="წყარო/ბიბლიოგრაფია", endpoint="bibliography"))
+    admin.add_view(TypeView(Type, db.session, name="ადგილის ტიპები", endpoint="types"))
+    admin.add_view(ConnectionView(ConnectionType, db.session, name="კავშირის ტიპი", endpoint="connection_type"))
+    admin.add_view(BibliographyView(Bibliography, db.session, name="წყარო/ბიბლიოგრაფია", endpoint="bibliography"))
 
 
 def register_commands(app):
