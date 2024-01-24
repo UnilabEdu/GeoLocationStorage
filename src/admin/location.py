@@ -14,7 +14,7 @@ class LocationViewRowAction(LinkRowAction):
     def render(self, context, row_id, row):
         m = self._resolve_symbol(context, 'row_actions.link')
 
-        url = f"http://localhost5000/locations/{row.id}"
+        url = f"/locations/{row.id}"
 
         return m(self, url)
 
