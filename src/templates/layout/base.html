@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- seo meta tags -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Historical Places in Georgia" />
+    <meta name="keywords" content="history, places, georgia, travel, tourism" />
+    <meta name="author" content="Your Name" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Historical Places in Georgia" />
+    <meta property="og:description" content="Explore historical sites in Georgia" />
+    <meta property="og:image" content="image_url" />
+    <meta property="og:url" content="website_url" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Historical Places" />
+    <meta name="twitter:description" content="Explore historical sites in Georgia" />
+    <meta name="twitter:image" content="image_url" />
+    <meta name="twitter:site" content="@yourtwitter" />
+
+    <!-- Website Title -->
+    <title>Historical Places</title>
+
+    <!-- i18next links -->
+    <script src="https://unpkg.com/i18next@21.6.12/dist/umd/i18next.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/2.5.2/i18nextHttpBackend.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.0/dist/umd/i18nextBrowserLanguageDetector.min.js"></script>
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}" />
+  </head>
+  <body>
+    {% block navbar %}
+    {% endblock %} <!-- Header section will be inserted here -->
+
+    <main>
+      {% block content %}
+      {% endblock %} <!-- Main content of the page will be inserted here -->
+    </main>
+
+    {% block footer %}{% endblock %} <!-- Footer section will be inserted here -->
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="{{ url_for('static', filename='js/switch-language.js') }}"></script>
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+
+  </body>
+</html>
