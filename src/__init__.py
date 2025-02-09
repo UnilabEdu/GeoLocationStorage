@@ -11,7 +11,13 @@ from src.admin.location import LocationView
 from src.admin.bibliography import BibliographyView
 from src.admin.type import TypeView
 from src.admin.connection import ConnectionView
+from src.views.main.routes import main_blueprint
+from src.views.pages.routes import pages_bp
 
+BLUEPRINTS = [
+    main_blueprint,
+    pages_bp
+]
 
 COMMANDS = [
     init_db,
@@ -23,13 +29,15 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    @app.route("/")
-    def testing_purposes():
-        login_user(User.query.get(1))
-        return "Hello World!"
+    # @app.route("/")
+    # def testing_purposes():
+    #     login_user(User.query.get(1))
+    #     return "Hello World!"
 
     register_extensions(app)
     register_commands(app)
+
+    register_blueprints(app)
 
     return app
 
@@ -60,3 +68,7 @@ def register_extensions(app):
 def register_commands(app):
     for command in COMMANDS:
         app.cli.add_command(command)
+
+def register_blueprints(app):
+    for blueprint in BLUEPRINTS:
+        app.register_blueprint(blueprint)

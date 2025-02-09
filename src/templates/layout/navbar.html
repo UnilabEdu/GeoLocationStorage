@@ -1,0 +1,39 @@
+ <!-- Header -->
+ <header>
+  <div class="header-container">
+    <div class="logo">
+      <a href="{{ url_for('main.index') }}">
+        <div class="line1">საქართველოს</div>
+        <div class="line2">ისტორიულ</div>
+        <div class="line3">ადგილთა საცავი</div>
+      </a>
+    </div>
+    <div class="navigation">
+      <nav>
+        <ul>
+          <li>
+            <a href="{{ url_for('main.index') }}" class="nav-button">მთავარი</a>
+          </li>
+          <li>
+            <a href="{{ url_for('pages.locations') }}" class="nav-button">ადგილები</a>
+          </li>
+          <li>
+            <a href="{{ url_for('pages.bibliography') }}" class="nav-button"
+              >ბიბლიოგრაფია</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <div class="search-container">
+        <img
+          class="loop-icon"
+
+          src="{{ url_for('static', filename='assets/loop-icon.svg') }}"
+
+          alt="loop-icon"
+        />
+        <input type="text" placeholder="ძიება" />
+      </div>
+    </div>
+  </div>
+</header>

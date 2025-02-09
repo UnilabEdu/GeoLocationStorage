@@ -1,0 +1,104 @@
+{% extends "layout/base.html" %}
+
+{% block navbar %}
+  {% include 'layout/navbar.html' %}
+{% endblock %}
+
+{% block content %}
+  <!-- Main Content -->
+  <section class="about-project">
+    <div class="container">
+      <!-- Heading -->
+      <div class="heading">
+        <h3 data-i18n="about-project.heading">პროექტის შესახებ</h3>
+        <div class="switch-language">
+          <span id="switch-to-english">EN</span>
+          <span id="switch-to-georgian" class="clicked">GEO</span>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="about-project-content">
+        <p data-i18n="about-project.about-project-content.paragraph">
+          ლორემ იპსუმ მოუდგა თართის შევცვალო ბოდიალის სუფთა შეუკავებიათო.
+          შევცვალო უპოვნია ყოველთვის წაბლიანს შინაბერებს, ფისტონ, ბიჭებსაც
+          დილაზე გათავისუფლების ჭვავის ლაქას ჩაეკვეტოთ, მოქაჩა მთლიანადაა.
+        </p>
+
+        <p data-i18n="about-project.about-project-content.paragraph">
+          ლორემ იპსუმ მოუდგა თართის შევცვალო ბოდიალის სუფთა შეუკავებიათო.
+          შევცვალო უპოვნია სამკელს წაბლიანს შინაბერებს, მოღანი ფისტონის,
+          ბიჭებსაც დილაზე გათავისუფლების ჭვავის ლაქას ჩაეკვეტოთ, მოქაჩა
+          მთლიანადაა.
+        </p>
+
+        <p data-i18n="about-project.about-project-content.paragraph">
+          ლორემ იპსუმ მოუდგა თართის შევცვალო ბოდიალის სუფთა შეუკავებიათო.
+          შევცვალო უპოვნია საკმაოდ წაბლიანს შინაბერებს, მოღალულნი ფისტონის,
+          ვეტოთ, მოქაჩა მთლიანადაა.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Members Section -->
+  <section class="team-members">
+    <div class="container">
+      <h3>გუნდის წევრები</h3>
+
+      <div class="team-members-blocks-wrapper">
+        <!-- Team Member 1 -->
+        <div class="team-members-block">
+          <h4>გიორგი გიორგაძე</h4>
+          <p>პროექტის ხელმძღვანელი</p>
+          <p>ლორემ იფსუმ</p>
+
+          <div class="email">
+            <img src="{{ url_for('static', filename='assets/email-icon.svg') }}" alt="email-icon" />
+            <p><a href="mailto:giorgi.giorgaze@gmail.com">giorgi.giorgaze@gmail.com</a></p>
+          </div>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-members-block">
+          <h4>ნინო ნინოშვილი</h4>
+          <p>ტექნიკური დირექტორი</p>
+          <p>ლორემ იფსუმ</p>
+
+          <div class="email">
+            <img src="{{ url_for('static', filename='assets/email-icon.svg') }}" alt="email-icon" />
+            <p><a href="mailto:nino.nin@example.com">nino.nin@example.com</a></p>
+          </div>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-members-block">
+          <h4>გოჩა გოგოლაძე</h4>
+          <p>დიზაინერი</p>
+          <p>ლორემ იფსუმ</p>
+
+          <div class="email">
+            <img src="{{ url_for('static', filename='assets/email-icon.svg') }}" alt="email-icon" />
+            <p><a href="mailto:gocha.gogo@example.com">gocha.gogo@example.com</a></p>
+          </div>
+        </div>
+
+        <!-- Team Member 4 -->
+        <div class="team-members-block">
+          <h4>სალომე სარჯველაძე</h4>
+          <p>განვითარების სპეციალისტი</p>
+          <p>ლორემ იფსუმ</p>
+
+          <div class="email">
+            <img src="{{ url_for('static', filename='assets/email-icon.svg') }}" alt="email-icon" />
+            <p><a href="mailto:salome.sarjveladze@example.com">salome.sarjveladze@example.com</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block footer %}
+  {% include 'layout/footer.html' %}
+{% endblock %}

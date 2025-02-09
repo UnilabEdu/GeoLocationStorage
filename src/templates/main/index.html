@@ -1,0 +1,259 @@
+{% extends "layout/base.html" %}
+
+{% block title %}მთავარი{% endblock %}
+
+{% block navbar %}
+{% include "layout/navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<main>
+    <!-- Map Section -->
+    <section class="map-section">
+      <div class="container">
+        <div class="map-wrapper">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2392928.670457168!2d40.69792126544106!3d42.340912442428646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440cd7e64f626b%3A0x4f907964122d4ac2!2sGeorgia!5e0!3m2!1sen!2sge!4v1720877710043!5m2!1sen!2sge"
+            width="100%"
+            height="100%"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Project Section -->
+    <section class="about-project">
+      <div class="container">
+        <!-- Heading -->
+        <h3>პროექტის შესახებ</h3>
+
+        <!-- Content -->
+        <p>
+          ლორემ იპსუმ მოუდგა თართის შევცვალო ბოდიალის სუფთა შეუკავებიათო.
+          შევცვალო უპოვნია საკმელს წაბლიანს შინაბერებს, მოღალულნი ფისტონის,
+          ბიჭებსაც დილაზე გათავისუფლების ჭვავის ლაქას ჩაეკვეტოთ, მოქაჩა
+          მთლიანადაა. კოვზს ვეტყვით იმისმა წუხდებით სპორტიდან ღაწვები, მოუდგა
+          გადავქექეთ, სარგებლობა ფისტონის იცვალა შევცვალო.
+        </p>
+
+        <!-- Button -->
+        <div class="see-more">
+
+          <a href="{{ url_for('main.about') }}">ვრცლად</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- list of places -->
+
+    <section class="list-of-places">
+      <form action="#" class="places-list-form">
+        <label for="search">ადგილების ჩამონათვალი</label>
+        <input type="text" id="search" placeholder="ძიება" />
+        <img src="{{ url_for('static', filename='assets/search-icon.svg') }}" alt="search icon" />
+      </form>
+      
+      <!-- filter section -->
+      <div class="filter-wrapper">
+        <div class="filterBtn-container dropdown-btn">
+          <button>ფილტრი</button>
+       
+
+          <img src="{{ url_for('static', filename='assets/down-arrow.svg') }}" alt="button arrow" />
+        </div>
+        <div class="filterBtn-dropdown dropdown">
+          <div class="filter-dropdown-wrapper">
+            <div class="place-type-container">
+              <h2>ადგილის ტიპების მიხედვით</h2>
+              <form action="#" class="dropdown-form">
+                <div class="dropdown-item">
+                  <input type="radio" id="option1" name="place-type" />
+                  <label for="option1">ლორემ იპსუმ</label>
+                </div>
+                <div class="dropdown-item">
+                  <input type="radio" id="option2" name="place-type" />
+                  <label for="option2">ლორემ იპსუმ</label>
+                </div>
+                <div class="dropdown-item">
+                  <input type="radio" id="option3" name="place-type" />
+                  <label for="option3">ლორემ იპსუმ</label>
+                </div>
+                <div class="dropdown-item">
+                  <input type="radio" id="option4" name="place-type" />
+                  <label for="option4">ლორემ იპსუმ</label>
+                </div>
+              </form>
+            </div>
+            <div class="bibliography-container">
+              <div class="dropdown-search-container">
+                <h2>ბიბლიოგრაფია</h2>
+                <div class="search-div">
+                  <img
+                    class="loop-icon"
+                    src="{{ url_for('static', filename='assets/loop-icon.svg') }}"
+                    alt="loop-icon"
+                  />
+                  <input type="text" />
+                </div>
+              </div>
+              <form action="#" class="dropdown-form">
+                <div class="dropdown-item">
+                  <input type="radio" id="option1" name="bibliography-type" />
+                  <label for="option1">ლორემ იპსუმ დოლორ თართი მოვიდა</label>
+                </div>
+                <div class="dropdown-item">
+                  <input type="radio" id="option2" name="bibliography-type" />
+                  <label for="option2">ლორემ იპსუმ დოლორ თართი მოვიდა</label>
+                </div>
+                <div class="dropdown-item">
+                  <input type="radio" id="option3" name="bibliography-type" />
+                  <label for="option3">ლორემ იპსუმ დოლორ თართი მოვიდა</label>
+                </div>
+                <div class="dropdown-item">
+                  <input type="radio" id="option4" name="bibliography-type" />
+                  <label for="option4">ლორემ იპსუმ დოლორ თართი მოვიდა</label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="time-range-container">
+            <h2>დროის დიაპაზონი</h2>
+            <div class="range-wrapper">
+              <div class="range-slider">
+                <span class="slider-track"></span>
+                <input
+                  type="range"
+                  name="min_val"
+                  class="min-val"
+                  min="1000"
+                  max="3000"
+                  value="1200"
+                />
+                <input
+                  type="range"
+                  name="max_val"
+                  class="max-val"
+                  min="1000"
+                  max="3000"
+                  value="2800"
+                />
+                <div class="tooltip min-tooltip"></div>
+                <div class="stick min-stick"></div>
+                <div class="tooltip max-tooltip"></div>
+                <div class="stick max-stick"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- sorting section -->
+      <div class="sort-wrapper">
+        <div class="sortBtn-container dropdown-btn">
+          <button>სორტირება</button>
+          
+          <img src="{{ url_for('static', filename='assets/down-arrow.svg') }}" alt="button arrow" />
+        </div>
+        <div class="sorting-dropdpwn-wrapper">
+          <div class="sorting-container dropdown">
+            <form action="#" class="dropdown-form">
+              <div class="dropdown-item">
+                <input type="radio" id="option1" name="sorting-type" />
+                <label for="option1">ანბანურად</label>
+              </div>
+              <div class="dropdown-item">
+                <input type="radio" id="option2" name="sorting-type" />
+                <label for="option2">ანბანურად პირიქით</label>
+              </div>
+              <div class="dropdown-item">
+                <input type="radio" id="option3" name="sorting-type" />
+                <label for="option3">თარიღულად (ახლიდან ძველისკენ)</label>
+              </div>
+              <div class="dropdown-item">
+                <input type="radio" id="option4" name="sorting-type" />
+                <label for="option4">თარიღულად (ძველიდან ახლისკენ)</label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- slider -->
+      <div class="slider-wrapper">
+        <div class="cards">
+          <a href="./pages/places-inside-page.html" class="card">
+            <div>
+              <h4>სათაური ლორემ</h4>
+              <p>
+                ლორემ იპსუმ მოუდგა თართის შევცვალო ბოდიალის სუფთა ფისტონის,
+                ლორემ იფსუმ არუნდა გათიშვა ბიჭებსა ლაქას ჩაეკვეტოთ.
+              </p>
+            </div>
+          </a>
+          <a href="./pages/places-inside-page.html" class="card">
+            <div>
+              <h4>სათაური ლორემ</h4>
+              <p>
+                ლორემ იპსუმ მოუდგა თართის შევცვალო ბოდიალის სუფთა ფისტონის,
+                ლორემ იფსუმ არუნდა გათიშვა ბიჭებსა ლაქას ჩაეკვეტოთ.
+              </p>
+            </div>
+          </a>
+          <a href="./pages/places-inside-page.html" class="card">
+            <div>
+              <h4>სათაური ლორემ</h4>
+              <p>
+                ლორემ იპსუმ მოუდგა თართის შევცვალო ბოდიალის სუფთა ფისტონის,
+                ლორემ იფსუმ არუნდა გათიშვა ბიჭებსა ლაქას ჩაეკვეტოთ.
+              </p>
+            </div>
+          </a>
+          <a href="./pages/places-inside-page.html" class="card">
+            <div>
+              <h4>სათაური ლორემ</h4>
+              <p>
+                ლორემ იპსუმ მოუდგა თართის შევცვალო ბოდიალის სუფთა ფისტონის,
+                ლორემ იფსუმ არუნდა გათიშვა ბიჭებსა ლაქას ჩაეკვეტოთ.
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="pages">
+          <img
+            id="leftArrow"
+            src="{{ url_for('static', filename='assets/slider-arrow.svg') }}"
+            alt="left arrow"
+          />
+          <div class="numbers">
+            <span>1</span>
+            <span class="spot">...</span>
+            <span>26</span>
+            <span class="current">24</span>
+            <span>25</span>
+            <span class="spot">...</span>
+            <span>50</span>
+          </div>
+          <img
+            id="rightArrow"
+            src="{{ url_for('static', filename='assets/slider-arrow.svg') }}"
+            alt="right arrow"
+          />
+        </div>
+        
+        <a href="{{ url_for('pages.locations') }}">
+          <button>ყველა ადგილის ნახვა</button>
+        </a>
+      </div>
+    </section>
+  </main>
+
+{% endblock %}
+
+{% block footer %}
+{% include "layout/footer.html" %}
+{% endblock %}
+
