@@ -1,0 +1,14 @@
+{% macro render_bibliography_card(item) %}
+<div class="card">
+    <p>
+      სათაური:
+      <a href="#">{{ item.title }}</a>
+    </p>
+    <p>ავტორი: {{ item.author }}</p>
+    <p>გამომცემლობა: {{ item.publisher }}</p>
+    <p>გამოცემის წელი: {{ item.year }}</p>
+    <p>გამოცემის ადგილი: {{ item.location }}</p>
+    <p>ენა: {{ item.language }}</p>
+    <p>აბრევიაცია: {{ item.abbreviation }}</p>
+</div>
+{% endmacro %}
