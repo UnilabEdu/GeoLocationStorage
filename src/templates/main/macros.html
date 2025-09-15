@@ -1,0 +1,10 @@
+{% macro render_location_card(location) %}
+<a  class="card">
+    <div>
+        <h4> {{ location.name }}</h4>
+        <p>
+            {{ location.description if location.description else 'No available' }}
+        </p>
+    </div>
+</a>
+{% endmacro %}

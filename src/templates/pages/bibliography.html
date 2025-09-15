@@ -4,71 +4,60 @@
   {% include 'layout/navbar.html' %}
 {% endblock %}
 
+{% from "pages/macros.html" import render_bibliography_card %}
+
 {% block content %}
-  <!-- Main Content -->
   <main class="bibliography-content">
     <div class="bibliography-box">
       <h3>ბიბლიოგრაფია</h3>
       <div class="cards">
-        <!-- Card 1 -->
-        <div class="card">
-          <p>
-            სათაური: 
-            <a href="#">ლორემ იფსუმ დოლორ თართი მოვიდა</a>
-          </p>
-          <p>ავტორი: გიორგი გიორგაძე</p>
-          <p>გამომცემლობა: ლორემ იფსუმ</p>
-          <p>გამოცემის წელი: 1234</p>
-          <p>გამოცემის ადგილი: ლორემ</p>
-          <p>ენა: ლორემ</p>
-          <p>აბრევიაცია: ლორემ იფსუმ დოლორ</p>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="card">
-          <p>
-            სათაური:
-            <a href="#">ლორემ იფსუმ დოლორ თართი მოვიდა</a>
-          </p>
-          <p>ავტორი: გიორგი გიორგაძე</p>
-          <p>გამომცემლობა: ლორემ იფსუმ</p>
-          <p>გამოცემის წელი: 1234</p>
-          <p>გამოცემის ადგილი: ლორემ</p>
-          <p>ენა: ლორემ</p>
-          <p>აბრევიაცია: ლორემ იფსუმ დოლორ</p>
-        </div>
-
-        <!-- Additional Cards (Similar to above, repeating the same structure for each item) -->
-
+        {% for item in bibliographies.items %}
+          {{ render_bibliography_card(item) }}
+        {% endfor %}
       </div>
 
-      <!-- Pagination -->
-      <div class="page-container">
-        <div class="pages">
-          <img
-            id="leftArrow"
-            src="{{ url_for('static', filename='assets/slider-arrow.svg') }}"
-            alt="left arrow"
-          />
-          <div class="numbers">
-            <span>1</span>
-            <span class="spot">...</span>
-            <span>26</span>
-            <span class="current">24</span>
-            <span>25</span>
-            <span class="spot">...</span>
-            <span>50</span>
-          </div>
-          <img
-            id="rightArrow"
-            src="{{ url_for('static', filename='assets/slider-arrow.svg') }}"
-            alt="right arrow"
-          />
-        </div>
-      </div>
+<div class="page-container">
+  <div class="pages">
+    <!-- Left Arrow -->
+    <a id="leftArrow" href="{{ url_for('pages.bibliography', page=bibliographies.prev_num) }}" {% if not bibliographies.has_prev %}class="disabled"{% endif %}>
+      <img src="{{ url_for('static', filename='assets/slider-arrow.svg') }}" alt="left arrow">
+    </a>
+
+    <!-- Page Numbers -->
+    <div class="numbers">
+      {% if bibliographies.page > 3 %}
+        <span>1</span>
+        <span class="spot">...</span>
+      {% endif %}
+
+      {% for num in bibliographies.iter_pages(left_edge=1, left_current=2, right_current=2, right_edge=1) %}
+        {% if num %}
+          {% if num == bibliographies.page %}
+            <span class="current">{{ num }}</span>
+          {% else %}
+            <span><a href="{{ url_for('pages.bibliography', page=num) }}">{{ num }}</a></span>
+          {% endif %}
+        {% else %}
+          <span class="spot">...</span>
+        {% endif %}
+      {% endfor %}
+
+      {% if bibliographies.page < bibliographies.pages - 2 %}
+        <span class="spot">...</span>
+        <span>{{ bibliographies.pages }}</span>
+      {% endif %}
+    </div>
+
+    <!-- Right Arrow -->
+    <a id="rightArrow" href="{{ url_for('pages.bibliography', page=bibliographies.next_num) }}" {% if not bibliographies.has_next %}class="disabled"{% endif %}>
+      <img src="{{ url_for('static', filename='assets/slider-arrow.svg') }}" alt="right arrow">
+    </a>
+  </div>
+</div>
     </div>
   </main>
 {% endblock %}
+
 
 {% block footer %}
   {% include 'layout/footer.html' %}

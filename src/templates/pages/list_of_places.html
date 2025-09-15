@@ -132,32 +132,45 @@
       </section>
 
       <!-- cards section -->
-      <div class="cards">
-        <a href="./places-inside-page.html" class="card">
-          <div>
-            <h4>სათაური ლორემ</h4>
-            <p>ლორემ იპსუმ მოუდგა თართის შევცვალო ბოდიალის...</p>
-          </div>
+ <div class="cards">
+    {% for location in locations %}
+        <a href="{{ url_for('pages.place_detail', location_id=location.id) }}" class="card">
+            <div>
+                <h4>{{ location.name }}</h4>
+                <p>{{ location.description }}</p>
+            </div>
         </a>
-        <!-- Additional Cards Here -->
-      </div>
+    {% endfor %}
+</div>
 
       <!-- pagination -->
-      <div class="page-container">
-        <div class="pages">
-          <img id="leftArrow" src="{{ url_for('static', filename='assets/slider-arrow.svg') }}" alt="left arrow" />
-          <div class="numbers">
-            <span>1</span>
-            <span class="spot">...</span>
-            <span>26</span>
-            <span class="current">24</span>
-            <span>25</span>
-            <span class="spot">...</span>
-            <span>50</span>
-          </div>
-          <img id="rightArrow" src="{{ url_for('static', filename='assets/slider-arrow.svg') }}" alt="right arrow" />
-        </div>
-      </div>
+   <!-- pagination -->
+<div class="page-container">
+  <div class="pages">
+    <a id="leftArrow" href="{{ url_for('pages.locations', page=pagination.prev_num) }}" {% if not pagination.has_prev %}class="disabled"{% endif %}>
+      <img src="{{ url_for('static', filename='assets/slider-arrow.svg') }}" alt="left arrow">
+    </a>
+
+    <div class="numbers">
+      {% for page_num in pagination.iter_pages(left_edge=1, left_current=2, right_current=2, right_edge=1) %}
+        {% if page_num %}
+          {% if page_num == pagination.page %}
+            <span class="current">{{ page_num }}</span>
+          {% else %}
+            <span><a href="{{ url_for('pages.locations', page=page_num) }}">{{ page_num }}</a></span>
+          {% endif %}
+        {% else %}
+          <span class="spot">...</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <a id="rightArrow" href="{{ url_for('pages.locations', page=pagination.next_num) }}" {% if not pagination.has_next %}class="disabled"{% endif %}>
+      <img src="{{ url_for('static', filename='assets/slider-arrow.svg') }}" alt="right arrow">
+    </a>
+  </div>
+</div>
+
     </section>
   </main>
 {% endblock %}
